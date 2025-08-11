@@ -1,5 +1,15 @@
 ---
+import { animate, stagger, text } from 'animejs';
 
+text.split('h1', {
+  chars: { class: 'split-char' },
+});
+
+animate('.split-char', {
+  y: ['0rem', '-1rem', '0rem'],
+  loop: true,
+  delay: stagger(100)
+});
 ---
 
 <header>
@@ -8,6 +18,7 @@
             <input type="text" placeholder="Search..." />
         </div>
         <h1>Nimbus Style</h1>
+        <div class="small row"></div>
     </div>
 </header>
 
@@ -39,5 +50,11 @@
         border: 1px solid #ccc;
         border-radius: 4px;
         width: 28rem;
+    }
+    .split-char {
+        color: var(--hex-current-1);
+        background-color: var(--hex-current-3);
+        outline: 1px solid var(--hex-current-2);
+        border-radius: .25rem;
     }
 </style>
