@@ -1,0 +1,42 @@
+---
+// Obtenemos la información de la URL actual
+const { pathname } = Astro.url;
+console.log('Ruta actual:', pathname);
+
+// Verificamos si debemos mostrar el navbar
+const showNavbar = pathname !== "/";
+---
+{showNavbar && (
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="/" class="navbar-link">Categorías</a>
+    </div>
+  </nav>
+)}
+
+<style>
+  .navbar {
+    padding: 1rem;
+    background-color: transparent;
+  }
+  
+  .navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  .navbar-link {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: color 0.2s ease;
+  }
+  
+  .navbar-link:hover {
+    color: #666;
+  }
+</style>

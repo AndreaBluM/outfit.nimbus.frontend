@@ -1,24 +1,41 @@
 ---
+// Puedes pasar estas props desde donde uses este componente
+interface Props {
+  id?: string;
+  nombre?: string;
+  tags?: string[];
+}
 
+const { 
+  id = "goth",  // ID por defecto si no se proporciona
+  nombre = "Mi Categoría", 
+  tags = ["Tag 1", "Tag 2", "Tag 3"]
+} = Astro.props;
+
+const url = `/categoria/${id}`;
 ---
 
-<section class="categoria">
-  <div class="nombre-categoria">
-    <h1>Mi Categoría</h1>
-  </div>
-  <div class="tags-categoria">
-    <ul>
-      <li>Tag 1</li>
-      <li>Tag 2</li>
-      <li>Tag 3</li>
-    </ul>
-  </div>
-  <div class="seccion-vista-previa">
-    <div class="vista-previa"></div>
-  </div>
-</section>
+<a href={url} class="categoria-link">
+  <section class="categoria">
+    <div class="nombre-categoria">
+      <h1>{nombre}</h1>
+    </div>
+    <div class="tags-categoria">
+      <ul>
+        {tags.map(tag => <li>{tag}</li>)}
+      </ul>
+    </div>
+    <div class="seccion-vista-previa">
+      <div class="vista-previa"></div>
+    </div>
+  </section>
+</a>
 
 <style>
+  :root {
+    --principal-rgb: 116, 13, 13; /* Color base en formato RGB, ajusta estos valores según tu color principal */
+  }
+  
   .categoria {
     display: flex;
     justify-content: space-evenly;
@@ -29,7 +46,15 @@
     -webkit-backdrop-filter: blur(10px); /* Compatibilidad Safari */
     border: 1px solid rgba(255, 255, 255, 0.3); /* Borde tenue */
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
   }
+  
+  .categoria:hover {
+    box-shadow: 0 6px 35px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+  }
+
   .nombre-categoria {
     display: flex;
     align-items: center;
@@ -48,10 +73,18 @@
     gap: 0.5rem;
   }
   .tags-categoria li {
-    background-color: var(--principal);
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
+    background-color: rgba(var(--principal-rgb, 0, 0, 0), 0.15);
+    color: #444;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    border: 1px solid rgba(var(--principal-rgb, 0, 0, 0), 0.2);
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .tags-categoria li:hover {
+    background-color: rgba(var(--principal-rgb, 0, 0, 0), 0.2);
+    transform: scale(1.03);
   }
   .seccion-vista-previa {
     border-radius: 10px;
@@ -60,5 +93,13 @@
     width: 35rem;
     height: 5rem;
     margin: 1rem;
+  }
+
+  /* Estilos para el enlace que envuelve la categoría */
+  .categoria-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    width: 100%;
   }
 </style>
