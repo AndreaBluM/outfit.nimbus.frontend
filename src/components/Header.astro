@@ -1,15 +1,5 @@
 ---
-import { animate, stagger, text } from 'animejs';
 
-text.split('h1', {
-  chars: { class: 'split-char' },
-});
-
-animate('.split-char', {
-  y: ['0rem', '-1rem', '0rem'],
-  loop: true,
-  delay: stagger(100)
-});
 ---
 
 <header>
@@ -21,6 +11,25 @@ animate('.split-char', {
         <div class="small row"></div>
     </div>
 </header>
+
+<script type="module">
+  import { animate, text, stagger } from 'https://cdn.jsdelivr.net/npm/animejs/+esm';
+  text.split('h1', {
+    lines: { wrap: 'clip' },
+  })
+  .addEffect(({ lines }) => animate(lines, {
+    y: [
+      { to: ['100%', '0%'] },
+      { to: '-100%', delay: 750, ease: 'in(3)' }
+    ],
+    duration: 750,
+    ease: 'out(3)',
+    delay: stagger(200),
+    loop: true,
+    loopDelay: 500,
+  }));
+
+</script>
 
 <style>
     header {
@@ -52,9 +61,9 @@ animate('.split-char', {
         width: 28rem;
     }
     .split-char {
-        color: var(--hex-current-1);
-        background-color: var(--hex-current-3);
-        outline: 1px solid var(--hex-current-2);
-        border-radius: .25rem;
+      color: var(--hex-current-1);
+      background-color: var(--hex-current-3);
+      outline: 1px solid var(--hex-current-2);
+      border-radius: .25rem;
     }
 </style>
