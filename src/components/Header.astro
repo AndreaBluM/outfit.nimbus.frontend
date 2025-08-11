@@ -13,35 +13,38 @@
 </header>
 
 <script type="module">
-  import { animate, text, stagger } from 'https://cdn.jsdelivr.net/npm/animejs/+esm';
-  text.split('h1', {
-    lines: { wrap: 'clip' },
-  })
-  .addEffect(({ lines }) => animate(lines, {
-    y: [
-      { to: ['100%', '0%'] },
-      { to: '-100%', delay: 750, ease: 'in(3)' }
-    ],
-    duration: 950,
-    ease: 'out(3)',
-    delay: stagger(200),
-    loop: true,
-    loopDelay: 700,
-  }));
-
+    import {
+        animate,
+        text,
+        stagger,
+    } from "https://cdn.jsdelivr.net/npm/animejs/+esm";
+    text.split("h1", {
+        lines: { wrap: "clip" },
+    }).addEffect(({ lines }) =>
+        animate(lines, {
+            y: [
+                { to: ["100%", "0%"] },
+                { to: "-100%", delay: 750, ease: "in(3)" },
+            ],
+            duration: 950,
+            ease: "out(3)",
+            delay: stagger(200),
+            loop: true,
+            loopDelay: 700,
+        }),
+    );
 </script>
 
 <style>
     header {
         padding: 1rem 2rem;
-        background-color: #a64472;
-        box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.15);
-        backdrop-filter: blur(12px) saturate(160%);
-        -webkit-backdrop-filter: blur(12px) saturate(160%);
-        border-bottom: 1.5px solid rgba(255, 255, 255, 0.08);
-        border-radius: 18px;        
+        background-color: rgba(116, 13, 13, 0.15);
+        backdrop-filter: blur(10px); /* Difuminado del fondo */
+        -webkit-backdrop-filter: blur(10px); /* Compatibilidad Safari */
+        border: 1px solid rgba(255, 255, 255, 0.3); /* Borde tenue */
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        border-radius: 18px;
         margin: 2rem 0rem 2rem 0rem;
-
     }
     .search {
         display: flex;
@@ -53,7 +56,7 @@
     header h1 {
         margin: 0;
         font-size: 2rem;
-        color: #fff9db;
+        color: var(--principal);
     }
 
     header input[type="text"] {
@@ -63,9 +66,9 @@
         width: 28rem;
     }
     .split-char {
-      color: var(--hex-current-1);
-      background-color: var(--hex-current-3);
-      outline: 1px solid var(--hex-current-2);
-      border-radius: .25rem;
+        color: var(--hex-current-1);
+        background-color: var(--hex-current-3);
+        outline: 1px solid var(--hex-current-2);
+        border-radius: 0.25rem;
     }
 </style>
