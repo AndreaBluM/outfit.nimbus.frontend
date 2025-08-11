@@ -8,8 +8,28 @@
             <input type="text" placeholder="Search..." />
         </div>
         <h1>Nimbus Style</h1>
+        <div class="small row"></div>
     </div>
 </header>
+
+<script type="module">
+  import { animate, text, stagger } from 'https://cdn.jsdelivr.net/npm/animejs/+esm';
+  text.split('h1', {
+    lines: { wrap: 'clip' },
+  })
+  .addEffect(({ lines }) => animate(lines, {
+    y: [
+      { to: ['100%', '0%'] },
+      { to: '-100%', delay: 750, ease: 'in(3)' }
+    ],
+    duration: 750,
+    ease: 'out(3)',
+    delay: stagger(200),
+    loop: true,
+    loopDelay: 500,
+  }));
+
+</script>
 
 <style>
     header {
@@ -39,5 +59,11 @@
         border: 1px solid #ccc;
         border-radius: 4px;
         width: 28rem;
+    }
+    .split-char {
+      color: var(--hex-current-1);
+      background-color: var(--hex-current-3);
+      outline: 1px solid var(--hex-current-2);
+      border-radius: .25rem;
     }
 </style>
